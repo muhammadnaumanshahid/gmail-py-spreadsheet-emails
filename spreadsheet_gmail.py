@@ -1,8 +1,6 @@
-# Python code to send email to a list of emails from a spreadsheet
-
-# import the required libraries
 import pandas as pd
 import smtplib
+import time
 
 # change these as per use
 your_email = "bt1101analytics@gmail.com"
@@ -21,18 +19,25 @@ names = email_list['Message']
 emails = email_list['Email']
 
 # iterate through the records
-for i in range(len(emails)):
+total_emails = len(emails)
+sent_emails = 0
 
+for i in range(len(emails)):
 	# for every record get the name and the email addresses
 	name = names[i]
 	email = emails[i]
 
 	# the message to be emailed
-	subject = "Result: Tutorial 1 (Part-II)"
+	subject = "Result (BT1101): Tutorial 1 (Part-II)"
 	message = "Subject: {}\n\n{}".format(subject, name)
 
 	# sending the email
 	server.sendmail(your_email, [email], message)
+	sent_emails += 1
+	print("{} emails sent out of {}".format(sent_emails, total_emails))
+
+	# adding a delay of 10 seconds before sending the next email
+	time.sleep(10)
 
 # close the smtp server
 server.close()
