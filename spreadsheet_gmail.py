@@ -5,8 +5,8 @@ import pandas as pd
 import smtplib
 
 # change these as per use
-your_email = "<Insert your Gmail address here>"
-your_password = "<Insert app password here. Please check ReadMe file to know how to generate password>"
+your_email = "bt1101analytics@gmail.com"
+your_password = "fgizogtbrufljrpc"
 
 # establishing connection with gmail
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
@@ -28,7 +28,7 @@ for i in range(len(emails)):
 	email = emails[i]
 
 	# the message to be emailed
-	subject = "Assignment BT1101 Result"
+	subject = "Result: Tutorial 1 (Part-II)"
 	message = "Subject: {}\n\n{}".format(subject, name)
 
 	# sending the email
