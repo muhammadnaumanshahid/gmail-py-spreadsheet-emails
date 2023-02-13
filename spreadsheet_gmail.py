@@ -1,13 +1,12 @@
-# Python code to send email to a list of
-# emails from a spreadsheet
+# Python code to send email to a list of emails from a spreadsheet
 
 # import the required libraries
 import pandas as pd
 import smtplib
 
 # change these as per use
-your_email = "nauman555@gmail.com"
-your_password = "cnyfidhmmxdnkddr"
+your_email = "<Insert your Gmail address here>"
+your_password = "<Insert app password here. Please check ReadMe file to know how to generate password>"
 
 # establishing connection with gmail
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
@@ -29,7 +28,8 @@ for i in range(len(emails)):
 	email = emails[i]
 
 	# the message to be emailed
-	message = name
+	subject = "Assignment BT1101 Result"
+	message = "Subject: {}\n\n{}".format(subject, name)
 
 	# sending the email
 	server.sendmail(your_email, [email], message)
