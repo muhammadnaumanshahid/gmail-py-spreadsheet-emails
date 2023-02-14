@@ -3,8 +3,8 @@ import smtplib
 import time
 
 # change these as per use
-your_email = "bt1101analytics@gmail.com"
-your_password = "fgizogtbrufljrpc"
+your_email = "your gmail"
+your_password = "your gmail app password"
 
 try:
     # establishing connection with gmail
