@@ -1,10 +1,11 @@
+import random
 import pandas as pd
 import smtplib
 import time
 
 # change these as per use
-your_email = "<YOUR EMAIL>"
-your_password = "<YOUR EMAIL PASSWORD>"
+your_email = "<YOUR GMAIL>"
+your_password = "<GMAIL APP PASSWORD>"
 
 try:
     # establishing connection with gmail
@@ -30,7 +31,7 @@ try:
 
         # the message to be emailed
         subject = "Result (BT1101): Tutorial 2 (Part-II)"
-        message = "Subject: {}\n\n{}".format(subject, name)
+        message = "Subject: {}\n\n{}".format(subject, name).encode('utf-8')
 
         # sending the email
         server.sendmail(your_email, [email], message)
@@ -38,8 +39,9 @@ try:
         print("{} emails sent out of {}".format(sent_emails, total_emails))
         print("Email sent to: {}".format(email))
 
-        # adding a delay of 10 seconds before sending the next email
-        time.sleep(10)
+        # adding a random delay between 20 and 60 seconds before sending the next email
+        delay = random.randint(20, 60)
+        time.sleep(delay)
 
     # close the smtp server
     server.close()
