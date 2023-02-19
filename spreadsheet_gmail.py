@@ -3,8 +3,8 @@ import smtplib
 import time
 
 # change these as per use
-your_email = "your gmail"
-your_password = "your gmail app password"
+your_email = "bt1101analytics@gmail.com"
+your_password = "fgizogtbrufljrpc"
 
 try:
     # establishing connection with gmail
@@ -29,13 +29,14 @@ try:
         email = emails[i]
 
         # the message to be emailed
-        subject = "Result (BT1101): Tutorial 1 (Part-II)"
+        subject = "Result (BT1101): Tutorial 2 (Part-II)"
         message = "Subject: {}\n\n{}".format(subject, name)
 
         # sending the email
         server.sendmail(your_email, [email], message)
         sent_emails += 1
         print("{} emails sent out of {}".format(sent_emails, total_emails))
+        print("Email sent to: {}".format(email))
 
         # adding a delay of 10 seconds before sending the next email
         time.sleep(10)
