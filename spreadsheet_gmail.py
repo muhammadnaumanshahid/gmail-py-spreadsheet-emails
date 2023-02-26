@@ -3,9 +3,10 @@ import pandas as pd
 import smtplib
 import time
 
-# change these as per use
-your_email = "<YOUR GMAIL>"
-your_password = "<GMAIL APP PASSWORD>"
+# User inputs
+your_email = input("Enter your Gmail address: ")
+your_password = input("Enter your Gmail app password: ")
+subject = input("Enter the email subject: ")
 
 try:
     # establishing connection with gmail
@@ -30,7 +31,6 @@ try:
         email = emails[i]
 
         # the message to be emailed
-        subject = "Result (BT1101): Tutorial 2 (Part-II)"
         message = "Subject: {}\n\n{}".format(subject, name).encode('utf-8')
 
         # sending the email
