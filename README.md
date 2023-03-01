@@ -2,7 +2,7 @@
 This code written in Python sends emails to multiple recipients listed in a spreadsheet.
 # Gmail setup
 Please follow the steps outlined [here](https://support.google.com/accounts/answer/185833?visit_id=638117389350145242-1419633968&p=InvalidSecondFactor&rd=1) to generate an app password for your Gmail account. 
-# How to run the file
+# How to run the program
 1. Open the file spreadsheet_gmail.py in your Python editor of choice.
 2. Edit the config.ini file to include your Gmail address, Gmail app password, and email subject. To do this, open the config.ini file in a text editor and replace the following lines: Replace **your_email_address** with your Gmail address, **your_app_password** with your Gmail app password, and **your_email_subject** with the subject line you want to use for your emails. Save the config.ini file when you're done.
 3. Make sure that your spreadsheet file **student_emails.xlsx** is in the same directory as **spreadsheet_gmail.py**.
