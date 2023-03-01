@@ -3,6 +3,7 @@ import pandas as pd
 import smtplib
 import time
 import configparser
+import re
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -68,4 +69,4 @@ except smtplib.SMTPAuthenticationError:
 except smtplib.SMTPConnectError:
     print("Could not connect to SMTP server")
 except pd.errors.EmptyDataError:
-    print("The spreadsheet is empty or could not be read
+    print("The spreadsheet is empty or could not be read")
