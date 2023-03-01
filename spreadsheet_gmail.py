@@ -2,11 +2,24 @@ import random
 import pandas as pd
 import smtplib
 import time
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 # User inputs
-your_email = input("Enter your Gmail address: ")
-your_password = input("Enter your Gmail app password: ")
-subject = input("Enter the email subject: ")
+your_email = config.get('user', 'email')
+your_password = config.get('user', 'password')
+subject = config.get('email', 'subject')
+
+# Validate inputs
+if not re.match(r"[^@]+@[^@]+\.[^@]+", your_email):
+    print("Invalid email address")
+    exit()
+
+if len(your_password) < 8:
+    print("Password is too short")
+    exit()
 
 try:
     # establishing connection with gmail
@@ -24,6 +37,7 @@ try:
         # iterate through the records
         total_emails = len(emails)
         sent_emails = 0
+        success_emails = []
 
         for i, email in enumerate(emails):
             # for every record get the name and the email addresses
@@ -35,19 +49,23 @@ try:
             # sending the email
             try:
                 server.sendmail(your_email, [email], message)
+                success_emails.append(email)
+                print(f"Email sent to: {email}")
             except smtplib.SMTPException as e:
                 print(f"An error occurred while sending email to {email}: {e}")
-                continue
 
             sent_emails += 1
-            print(f"{sent_emails} emails sent out of {total_emails}")
-            print(f"Email sent to: {email}")
+            print(f"{sent_emails} of {total_emails} emails sent")
+            time.sleep(random.randint(20, 60))
 
-            # adding a random delay between 20 and 60 seconds before sending the next email
-            delay = random.randint(20, 60)
-            time.sleep(delay)
+    # Save successful emails to Excel file
+    success_df = pd.DataFrame({'Email': success_emails})
+    success_df.to_excel('success_emails.xlsx', index=False)
+    print(f"{len(success_emails)} emails successfully sent and saved to 'success_emails.xlsx'")
 
-    print("All emails sent successfully")
-
-except Exception as e:
-    print("An error occurred: ", e)
+except smtplib.SMTPAuthenticationError:
+    print("Incorrect email address or password")
+except smtplib.SMTPConnectError:
+    print("Could not connect to SMTP server")
+except pd.errors.EmptyDataError:
+    print("The spreadsheet is empty or could not be read
