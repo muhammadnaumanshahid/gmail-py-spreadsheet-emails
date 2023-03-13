@@ -57,7 +57,7 @@ try:
 
             sent_emails += 1
             print(f"{sent_emails} of {total_emails} emails sent")
-            time.sleep(random.randint(20, 60))
+            time.sleep(random.randint(10, 25))
 
     # Save successful emails to Excel file
     success_df = pd.DataFrame({'Email': success_emails})
